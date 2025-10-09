@@ -7,6 +7,8 @@ import {
 } from '@clerk/nextjs'
 import Header from "@/components/header";
 
+import { TanstackProvider } from "@/components/provider/tanstack_provider";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -40,7 +42,10 @@ export default function RootLayout({
             disableTransitionOnChange
           >
           <Header/> 
+         
+  <TanstackProvider>
          <main className="min-h-screen">{children}</main>
+         </TanstackProvider>
       </ThemeProvider>
       </body>
     </html>

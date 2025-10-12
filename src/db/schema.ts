@@ -23,7 +23,7 @@ export const marketOutlookEnum = pgEnum('market_outlook', ['Positive', 'Neutral'
 // -- TABLE DEFINITIONS --
 
 export const users = pgTable('users', {
-  id: uuid('id').primaryKey().defaultRandom(),
+  id: uuid('id').primaryKey().defaultRandom(), 
   clerkUserId: varchar('clerk_user_id').notNull().unique(),
   email: varchar('email').notNull().unique(),
   name: varchar('name'),

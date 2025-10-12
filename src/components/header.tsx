@@ -11,13 +11,15 @@ import Image from 'next/image'
 import { Button} from './ui/button'
 import { LayoutDashboard,ChevronDown,GraduationCap,FileText,PenBox,StarsIcon } from 'lucide-react'
 import { DropdownMenuTrigger,DropdownMenu,DropdownMenuItem,DropdownMenuContent} from './ui/dropdown-menu'
+import checkUser from '@/lib/checkUser'
 
-const Header = () => {
+const Header = async() => {
+  await checkUser()
   return (
 <header className='w-full flex justify-between items-center p-2 bg-background/50 backdrop-blur-md fixed top-0 z-50'>
     <nav className='w-full px-1 md:px-3 mx-auto flex justify-between items-center'>
         <Link href={"/"}>
-        <Image src="/public/globe.svg" alt='main logo' width={100} height={50}
+        <Image src="/globe.svg" alt='main logo' width={100} height={50}
         className='h-12 py-1 w-auto object-contain'/>
         </Link>
 

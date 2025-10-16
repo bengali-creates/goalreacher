@@ -37,8 +37,7 @@ import { eq } from "drizzle-orm";
 
   } catch (error) {
     console.error("Error creating new user in database:", error);
-    // Depending on your app's needs, you might want to re-throw the error
-    // or return null to indicate failure.
+   
     return null;
   }
 };

@@ -81,7 +81,7 @@ export const coverLetters = pgTable('cover_letters', {
   };
 });
 
-export const industryInsights = pgTable('industry_insights', {
+export const industryInsights = pgTable('industryInsights', {
   id: varchar('id', { length: 25 }).primaryKey(), // Using varchar for CUIDs
   industry: varchar('industry').notNull().unique(),
 

@@ -4,7 +4,7 @@ import { industries } from '@/data/industries'
 // import { industryInsights } from '@/db/schema'
 const OnboardingPage = () => {
   return (
-    <main>
+    <main className='pt-[8%] w-[30vw] m-auto'>
       <OnboardingForm industries={industries} />
     </main>
   )

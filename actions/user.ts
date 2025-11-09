@@ -18,7 +18,7 @@ interface UpdateUserData {
 
 type DemandLevel = "HIGH" | "MEDIUM" | "LOW";
 type MarketOutlook = "POSITIVE" | "NEUTRAL" | "STABLE" | "NEGATIVE";
-// interface IndustryInsightInsert {
+// export interface IndustryInsightType {
 //   industry: string;
 //   salaryRanges: string[];
 //   topSkills: string[];
@@ -30,7 +30,7 @@ type MarketOutlook = "POSITIVE" | "NEUTRAL" | "STABLE" | "NEGATIVE";
 //   nextUpdate: Date;
 //   lastUpdated: Date;
 // }
-type NewIndustryInsight = typeof industryInsights.$inferInsert;
+export type NewIndustryInsight = typeof industryInsights.$inferInsert;
 
 export async function updateUser(data: UpdateUserData) {
   const { userId } = await auth();

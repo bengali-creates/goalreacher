@@ -62,11 +62,14 @@ export async function getIndutryInsights(){
   }
 });
   if (!industryInsight){
+    let industryInsightPushed
     if(user.industry){
          const insight= await generateAIInsights(user.industry)
-         const industrInsights=await db.insert(industryInsights).values(newInsightData).returning()
+          industryInsightPushed=await db.insert(industryInsights).values( {industry: user.industry,
+        ...insight,
+        nextUpdate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)}).returning()
         }
-   
+   return industryInsightPushed
   }
-
+return industryInsight
 }

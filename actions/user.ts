@@ -8,6 +8,7 @@ import { auth } from "@clerk/nextjs/server";
 import { createId } from "@paralleldrive/cuid2";
 import { OnboardingFormValues } from "@/app/(main)/onboarding/_onboarding/onboarding.form";
 import { uuid} from 'drizzle-orm/pg-core';
+import { generateAIInsights } from "./dashboard";
 interface UpdateUserData {
   industry: string;
   // subIndustry: string;
@@ -48,15 +49,10 @@ const industryInsight = await db.query.industryInsights.findFirst({
 });
 
 if (!industryInsight) {
+  const insight= await generateAIInsights(data.industry);
   const newInsightData: NewIndustryInsight = {
     industry: data.industry,
-    salaryRanges: [],
-    topSkills: [],
-    recommendedSkills: [],
-    keyTrends: [],
-    growthRate: 0,
-    demandLevel: "Medium",
-    marketOutlook: "Positive",
+   ...insight,
     nextUpdate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
   };
 

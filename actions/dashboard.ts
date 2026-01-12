@@ -56,20 +56,31 @@ export async function getIndutryInsights(){
     where: eq(users.clerkUserId, userId),
   });
   if (!user) throw new Error("User not found");
-  const industryInsight = await db.query.users.findMany({
-  with: {
-    industryInsight: true,
+ const userWithInsight = await db.query.users.findFirst({
+    where: eq(users.clerkUserId, userId),
+    with: {
+      industryInsight: true,
+    },
+  });
+
+ if (userWithInsight?.industryInsight) {
+    return userWithInsight.industryInsight;
   }
-});
-  if (!industryInsight){
-    let industryInsightPushed
-    if(user.industry){
-         const insight= await generateAIInsights(user.industry)
-          industryInsightPushed=await db.insert(industryInsights).values( {industry: user.industry,
+
+  // If no insight exists and user has industry, generate one
+  if (user.industry) {
+    const insight = await generateAIInsights(user.industry);
+    const [newInsight] = await db
+      .insert(industryInsights)
+      .values({
+        industry: user.industry,
         ...insight,
-        nextUpdate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)}).returning()
-        }
-   return industryInsightPushed
+        nextUpdate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+      })
+      .returning();
+    return newInsight;
   }
-return industryInsight
+
+  // No insight available
+  return null;
 }

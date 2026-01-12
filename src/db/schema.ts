@@ -28,7 +28,7 @@ export const users = pgTable('users', {
   email: varchar('email').notNull().unique(),
   name: varchar('name'),
   imageUrl: varchar('image_url'),
-  industry: varchar('industry').references(() => industryInsights.industry),
+  industry: varchar('industry').references(() => industryInsights.industry,{ onDelete: "set null" }),
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull().$onUpdate(() => new Date()),
 

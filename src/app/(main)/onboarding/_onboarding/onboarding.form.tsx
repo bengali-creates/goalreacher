@@ -113,7 +113,6 @@ const OnboardingForm = ({ industries }: Industries) => {
                 <FormItem>
                   <FormLabel>Select Industry</FormLabel>
                   <FormControl>
-                    {/* wire the select: value + onValueChange */}
                     <Select
                       value={field.value}
                        onValueChange={(val: string) => {field.onChange(val)

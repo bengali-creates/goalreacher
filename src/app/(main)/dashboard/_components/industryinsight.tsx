@@ -25,11 +25,12 @@ const DashboardView = ({ insights }: DashboardViewProps) => {
   // Handle both single insight and array of insights
   const insightArray = Array.isArray(insights) ? insights : [insights]
   const salaryData=insightArray[0]?.salaryRanges?.map((range:any)=>({
-    name:range.name,
+    name:range.role,
     min:range.min/1000 ,
     max:range.max/1000,
     median:range.median/1000
   }))
+  console.log('salaryData', salaryData)
  const getDemandLevelColor = (level:"High"|"Medium"|"Low") => {
     switch (level.toLowerCase()) {
       case "High":
@@ -144,7 +145,7 @@ const OutlookIcon = getMarketOutlookInfo(insightArray[0]?.marketOutlook).icon;
           </CardDescription>
           </CardHeader>
           <CardContent>
-          <div className="h-[400px]">
+          <div className="h-[300px] md:h-[400px] w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={salaryData}>
                 <CartesianGrid strokeDasharray="3 3" />

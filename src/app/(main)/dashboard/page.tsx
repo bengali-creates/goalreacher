@@ -1,6 +1,4 @@
 
-import React from 'react'
-
 import { getIndutryInsights } from 'actions/dashboard'
 import { getUserOnboardingStatus } from 'actions/user'
 import { redirect } from "next/navigation";
@@ -24,7 +22,7 @@ if (!insight) {
   }
   
  return (
-    <div className="container mx-auto py-30">
+    <div className="container mx-auto py-5">
       <ClientDashboardWrapper insights={insight} />
     </div>
   );

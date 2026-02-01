@@ -6,6 +6,12 @@ import { eq } from "drizzle-orm";
 import { users } from "@/db/schema";
 import { GoogleGenAI } from "@google/genai";
 import { industryInsights } from './../src/db/schema';
+import {z} from "zod";
+
+const industuInsightSchema=z.object({
+  
+})
+
 const ai = new GoogleGenAI({});
 
 export const generateAIInsights = async (industry:string) => {
